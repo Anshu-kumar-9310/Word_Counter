@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Counter</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            height: 100vh;
+            width: 100vw;
+            font-family:sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+
+        .head {
+            width: 100%;
+            background-color: rgba(17, 17, 220, 0.682);
+            color: white;
+            font-size: 1.5rem;
+            text-align: center;
+            padding: 15px;
+            border: 2px solid rgba(17, 17, 220, 0.682);
+        }
+
+        #notepad {
+            width: 100%;
+            height: calc(100vh - 170px); /* Adjust to fill the screen */
+            border: 2px solid rgba(17, 17, 220, 0.682);
+            outline-color: rgba(17, 17, 220, 0.682);
+            font-size: 1rem;
+            resize: none; /* Disable resizing */
+            padding: 10px;
+            font-size: 18px;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        .Footer {
+            width: 100%;
+            border: 2px solid rgba(17, 17, 220, 0.682);
+            background-color: rgba(17, 17, 220, 0.898);
+            color: white;
+            font-size: 30px;
+            padding: 10px;
+            font-weight: 700;
+            /* text-align: center; */
+            box-sizing: border-box;
+        }
+        /* responsive */
+        @media (max-width: 480px) {
+            .head, .Footer {
+                font-size: 12px;
+            }
+
+            
+        }
+    </style>
+</head>
+<body>
+
+    <div class="head">
+        <h1>Word And Character Counter</h1>
+    </div>
+    <textarea id="notepad" placeholder="Enter Your Text Here."></textarea>
+    <div class="Footer">
+        <span id="word">0</span> Word <span id="char">0</span> Character
+    </div>
+
+    <script>
+
+        document.getElementById('notepad').addEventListener('input',counter);
+        function counter(){
+           let a= document.getElementById('notepad').value;
+        //    for character counter
+          document.getElementById('char').innerText=a.length;
+    
+    
+        //   for word counter
+        a=a.trim();
+    
+        // for not count of end and start spaces
+        let word=a.split(" ");
+    
+    
+        // which word have space which are not stored in cleanlist
+        // filter means only which word that pass the condition
+        // elem is used because it check condition of  every value that are stored in word variable
+           
+       let  cleanlist=word.filter ( function (elem){
+              return elem != "";
+        });
+    
+        // which word pass condition return puss back in cleanlist variable
+            
+       
+           document.getElementById('word').innerText=cleanlist.length;
+       
+         }
+    
+    </script>
+</body>
+</html>
